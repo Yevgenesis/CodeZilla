@@ -1,15 +1,18 @@
-let board = document.querySelector('.board')
-let imgPath = './images/'
+const board = document.querySelector('.board')
+const btnAnime = document.querySelector('.btn-anime')
+
+const images = './images/humans'
+const anime = './images/anime'
 
 // Создаёт массив с набором парных карточек
 function generateCardsKit(quantity) {
 	let arrayCards = []
 
 	for (let i = 1; i <= quantity / 2; i++) {
-		arrayCards.push({ id: 0, name: i, state: false })
-		arrayCards.push({ id: 0, name: i, state: false })
+		arrayCards.push(i)
+		arrayCards.push(i)
 	}
-    // Перемешивает карточки в массиве 
+	// Перемешивает карточки в массиве
 	for (let i = arrayCards.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1))
 		;[arrayCards[i], arrayCards[j]] = [arrayCards[j], arrayCards[i]]
@@ -20,33 +23,38 @@ function generateCardsKit(quantity) {
 // Добавляет карты на доску и добавляет порядковый номер в id для каждой карточки
 function addCardsOnBoard(cardsArray) {
 	for (let i = 0; i < cardsArray.length; i++) {
-		board.innerHTML += `<img id="${i}" class="card" src="${imgPath}${cardsArray[i].name}.jpeg" alt="${cardsArray[i].name}">`
-        cardsArray[i].id = i
+		board.innerHTML += `
+		<div id="${i}" class="cards-container">
+			<img class="card hidden" src="${images}/${cardsArray[i]}.jpeg" alt="${cardsArray[i]}">
+			<img class="card" src="${anime}/${cardsArray[i]}.jpeg" alt="${cardsArray[i]}">
+		</div>`
 	}
 }
 
 // --------------------GAME---------------------
-// Будет три уровня сложности 
-// Джун - 
-let cardsKit = generateCardsKit(36) 
+// Будет три уровня сложности
+// Джун - 8
+// middle - 16
+// senior - 36
+
+let cardsKit = generateCardsKit(36)
 addCardsOnBoard(cardsKit)
 
-let currentCard = { id: null, name: 0 }
+const cards = document.querySelectorAll('dev img')
 
-let cards = document.querySelectorAll('.card')
-cards.forEach(function (card) {
-	card.addEventListener('click', function () {
-		const idCard = card.getAttribute('id')
-		const nameCard = card.getAttribute('alt')
-		if (currentCard.id == null) {
-			currentCard.id = idCard
-			currentCard.name = nameCard
-		} else if (currentCard.name == nameCard && currentCard.id != idCard) {
-			console.log('Угадал МОЛОДЕЦ!')
-			currentCard.id = null
-		} else if (currentCard.name != nameCard) {
-			console.log('Эх! Не то(((')
-			currentCard.id = null
-		}
+btnAnime.addEventListener('click', function () {
+	if (btnAnime.innerText == 'HUMAN') {
+		btnAnime.innerText = 'ANIME'
+	} else {
+		btnAnime.innerText = 'HUMAN'
+	}
+	cards.forEach(function (card) {
+		card.classList.toggle('hidden')
 	})
 })
+
+// cards.forEach(function (card) {
+// 	card.addEventListener('click', function () {
+
+// 	})
+// })
