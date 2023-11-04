@@ -1,5 +1,5 @@
 const board = document.querySelector('.board')
-const btnAnime = document.querySelector('.btn-anime')
+const btnChangeTheme = document.querySelector('.btn-anime')
 
 const images = './images/humans'
 const anime = './images/anime'
@@ -25,36 +25,46 @@ function addCardsOnBoard(cardsArray) {
 	for (let i = 0; i < cardsArray.length; i++) {
 		board.innerHTML += `
 		<div id="${i}" class="cards-container">
+			<img class="shirt" src="./images/shirt.jpeg" alt="shirt">
 			<img class="card hidden" src="${images}/${cardsArray[i]}.jpeg" alt="${cardsArray[i]}">
-			<img class="card" src="${anime}/${cardsArray[i]}.jpeg" alt="${cardsArray[i]}">
+			<img class="card hidden" src="${anime}/${cardsArray[i]}.jpeg" alt="${cardsArray[i]}">
 		</div>`
 	}
 }
 
 // --------------------GAME---------------------
-// Будет три уровня сложности
-// Джун - 8
-// middle - 16
-// senior - 36
 
 let cardsKit = generateCardsKit(36)
 addCardsOnBoard(cardsKit)
+let theme = 1
 
-const cards = document.querySelectorAll('dev img')
+const containers = document.querySelectorAll('.cards-container')
 
-btnAnime.addEventListener('click', function () {
-	if (btnAnime.innerText == 'HUMAN') {
-		btnAnime.innerText = 'ANIME'
-	} else {
-		btnAnime.innerText = 'HUMAN'
-	}
-	cards.forEach(function (card) {
-		card.classList.toggle('hidden')
+containers.forEach(function (container) {
+	container.addEventListener('click', function () {
+
+		const shirt = container.children[0]
+		shirt.classList.toggle('hidden')
+		const cards = container.children[theme]
+		cards.classList.toggle('hidden')
 	})
 })
 
-// cards.forEach(function (card) {
-// 	card.addEventListener('click', function () {
 
-// 	})
-// })
+btnChangeTheme.addEventListener('click', function () {
+	theme = 1 + (theme % 2) // выбор 1 или 2 для темы карточек
+	const logo = document.querySelector("p")
+	logo.classList.toggle("text-fire")
+		logo.classList.toggle('logo')
+
+	containers.forEach(function (container) {
+		const cards = container.children
+		if (!cards[0].classList.contains('hidden')) {
+			return
+		}
+		cards[1].classList.toggle('hidden')
+		cards[2].classList.toggle('hidden')
+	})
+})
+
+

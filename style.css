@@ -2,38 +2,33 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	/* background-color:rgb(183, 167, 110); */
 }
 
 .main {
 	height: 100vh;
 	width: 100vw;
-	/* background-image: url('./images/background.jpg');
-	background-position: center; 
-	background-attachment: fixed; 
-	background-repeat: no-repeat; */
-	background-image: url('./images/back9.jpeg');
-	/* background-size: cover; */
-
-
-    background-repeat: repeat;
+	background-image: url('./images/back6.jpeg');
+	background-repeat: repeat;
 }
+.text-fire {
+	font-size: 7.5vw;
+	text-align: center;
+	padding-top: 10px;
+	color: rgb(109, 140, 41); 
+	font-family: Akronim;
+	
+	text-shadow: 0 0 5px #ffcc00, 0 0 10px #ff9900, 0 0 20px #ff6600,
+		0 0 30px #ff3300, 0 0 40px #ff8400, 0 0 50px #ff7b00;
+}
+
 .logo {
 	font-family: Akronim;
-    font-size: 6vw;
+	font-size: 7.5vw;
 	text-align: center;
-	/* background-color: rgb(138, 215, 215); */
-	/* background-color: rgb(138, 215, 215); */
 	padding-top: 10px;
-    color: rgb(181, 164, 79);
-	/* color: rgb(23, 49, 23); */
+	color: rgb(109, 140, 41);
+	text-shadow: 0 0 20px #000000;
 }
-/* main { */
-	/* width: 100vw; */
-	/* height: 100vh; */
-	/* background-color:rgb(138, 215, 215); */
-	/* background-color:rgb(183, 167, 110); */
-/* } */
 
 .board {
 	display: flex;
@@ -41,7 +36,10 @@
 	width: 80vh;
 	height: 80vh;
 	margin: 0px auto;
-	/* background-color: rgb(34, 39, 49); */
+		position: relative;
+
+		z-index: 2;
+
 }
 .cards-container {
 	width: 16%;
@@ -51,25 +49,43 @@
 	border-radius: 10%;
 }
 
-.card {
+.card,
+.shirt {
 	width: 100%;
 	height: 100%;
-	/* margin: 2px; */
-	/* border: 3px solid rgb(94, 73, 3); */
 	border-radius: 10%;
 }
+
 .hidden {
 	display: none;
-	/* overflow: hidden; */
-	/* border: none;
-        outline: none; */
+}
+.timer {
+	position: absolute;
+	top: -5.5vw;
+	left: 2vw;
+	width: 33%;
+}
+.moves {
+	position: absolute;
+	top: -3vw;
+	right: -2vw;
+	width: 33%;
 }
 
+img {
+	height: 100%;
+	width: 100%;
+}
 .btn-anime {
-	height: 100px;
-	width: 100px;
-	background-color: aqua;
+	height: 10vw;
 	position: absolute;
-	left: 150px;
-	bottom: 50px;
+	left: 4vw;
+	bottom: 2vw;
+}
+
+.btn-start {
+	height: 10vw;
+	position: absolute;
+	right: 4vw;
+	bottom: 2vw;
 }
