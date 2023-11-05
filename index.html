@@ -4,12 +4,15 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Akronim&display=swap"
-			rel="stylesheet"
-		/>
+		<link href="https://fonts.googleapis.com/css2?family=Akronim&display=swap" rel="stylesheet" />
+
 		<link rel="stylesheet" href="./style.css" />
 	</head>
 	<body>
@@ -17,13 +20,24 @@
 			<p class="logo">CodeZilla</p>
 
 			<main>
-				<div class="board"> </div>
+				<div class="board"></div>
 			</main>
-		
-			<div class="btn-anime"><img src="./images/anime.png" alt=""></div>
-			<div class="btn-start"><img src="./images/start.png" alt=""></div>
-			<div class="timer"><img src="./images/timer11.png" alt=""></div>
-			<div class="moves"><img src="./images/timer4.png" alt=""></div>
+
+			
+			<div class="moves-table">
+				<img src="./images/timer11.png" alt="" />
+				<p class="moves-counter">0</p>
+			</div>
+			<div class="timer-container">
+				<img src="./images/timer4.png" alt="" />
+				<div class="timer">
+        			<div id="display">00:00:00</div>
+				</div>
+			</div>
+
+			<div class="btn-anime"><img src="./images/anime.png" alt="" /></div>
+			<div class="btn-start"><img src="./images/start.png" alt="" /></div>
+
 		</div>
 	</body>
 	<script src="./script.js"></script>

@@ -44,10 +44,71 @@ function turnOverTheCard(cardContainer) {
 	cards.classList.toggle('hidden') // Устанавливает видимой карту с текущей темой
 }
 
+// таймер
+let timer
+let isRunning = false
+let seconds = 0
+let minutes = 0
+let hours = 0
+
+function startTimer() {
+	if (!isRunning) {
+		isRunning = true
+		timer = setInterval(updateTimer, 1000)
+		// document.getElementById('start').disabled = true
+	}
+}
+
+function stopTimer() {
+	if (isRunning) {
+		isRunning = false
+		clearInterval(timer)
+		// document.getElementById('start').disabled = false
+	}
+}
+
+function resetTimer() {
+	stopTimer()
+	seconds = 0
+	minutes = 0
+	hours = 0
+	updateDisplay()
+}
+
+function updateTimer() {
+	seconds++
+	if (seconds === 60) {
+		seconds = 0
+		minutes++
+		if (minutes === 60) {
+			minutes = 0
+			hours++
+		}
+	}
+	updateDisplay()
+}
+
+function updateDisplay() {
+	const display = document.getElementById('display')
+	display.textContent = `${String(hours).padStart(2, '0')}:${String(
+		minutes
+	).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
+}
+
+// document.getElementById('start').addEventListener('click', startTimer)
+// document.getElementById('stop').addEventListener('click', stopTimer)
+// document.getElementById('reset').addEventListener('click', resetTimer)
+
+
 // --------------------GAME---------------------
 
 let cardsKit = generateCardsKit(36)
 addCardsOnBoard(cardsKit)
+const moves = document.querySelector('.moves-counter')
+let movesCounter = 0
+
+let openedCardsPair = 0
+
 let cardsTheme = 1 // 1-фото, 2-картинки-аниме
 let pastCard = {}
 let countCurrentCards = 0
@@ -68,8 +129,7 @@ containers.forEach(function (cardContainer) {
 			
 			pastCard = {id: cardContainer.id,name: cardName}
 			turnOverTheCard(cardContainer)
-			// проверить конец игры
-			return
+			// return
 		} else {
 			turnOverTheCard(cardContainer)
 			countCurrentCards = 2
@@ -78,14 +138,26 @@ containers.forEach(function (cardContainer) {
 				console.log('GOOOD!')
 				countCurrentCards = 0
 				pastCard = {}
+				openedCardsPair++
+				if(openedCardsPair == 16){
+					stopTimer()
+					console.log("WIN");
+				}
+				// проверить конец игры
 			} else {
 				console.log('NO!')
+
+				movesCounter++
+				moves.innerText = movesCounter
+
+
+
 				const pastCardContainer = document.getElementById(pastCard.id)
 				setTimeout(function () {
 					turnOverTheCard(cardContainer)
 					turnOverTheCard(pastCardContainer)
 					countCurrentCards = 0
-				}, 1500)
+				}, 1200)
 				pastCard= {}
 			}
 		}
@@ -108,3 +180,4 @@ btnChangeTheme.addEventListener('click', function () {
 		cards[2].classList.toggle('hidden')
 	})
 })
+startTimer()
