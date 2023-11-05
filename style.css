@@ -30,11 +30,12 @@
 .board {
 	display: flex;
 	flex-wrap: wrap;
-	width: 80vh;
+	width: 85vmin;
 	height: 80vh;
 	margin: 0px auto;
 	position: relative;
 	z-index: 2;
+
 
 }
 
@@ -70,6 +71,8 @@
 }
 
 .moves-counter{
+			padding-top: 5px;
+
 	font-family: 'Luckiest Guy', cursive;
 	color: rgb(94, 64, 64);
 	font-size: 5vw;
@@ -79,6 +82,8 @@
 }
 
 .timer {
+		padding-top: 5px;
+
     text-align: left;
 	font-family: 'Luckiest Guy', cursive;
 	color: rgb(94, 64, 64);
@@ -88,15 +93,12 @@
 	left: 11.5vw;
 }
 
-/* #display {
-	    margin: 10px;
-} */
 img {
 	height: 100%;
 	width: 100%;
 }
 .btn-anime {
-	height: 10vw;
+	width: 15vmax;
 	position: absolute;
 	left: 4vw;
 	bottom: 2vw;

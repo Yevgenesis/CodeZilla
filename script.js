@@ -157,7 +157,7 @@ containers.forEach(function (cardContainer) {
 					turnOverTheCard(cardContainer)
 					turnOverTheCard(pastCardContainer)
 					countCurrentCards = 0
-				}, 1200)
+				}, 1100)
 				pastCard= {}
 			}
 		}
